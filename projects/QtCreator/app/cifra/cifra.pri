@@ -52,13 +52,44 @@ $${cifra_DEFINES} \
 ########################################################################
 # cifra_exe HEADERS
 #
-#cifra_exe_HEADERS += \
-#$${CIFRA_SRC}/cifra/base/Base.hpp \
+cifra_exe_HEADERS += \
+$${CIFRA_SRC}/xos/crypto/base/error.hpp \
+$${CIFRA_SRC}/xos/crypto/base/exception.hpp \
+$${CIFRA_SRC}/xos/crypto/base/implement.hpp \
+$${CIFRA_SRC}/xos/crypto/base/extend.hpp \
+\
+$${CIFRA_SRC}/xos/crypto/hash/algorithm.hpp \
+$${CIFRA_SRC}/xos/crypto/hash/implement.hpp \
+$${CIFRA_SRC}/xos/crypto/hash/extend.hpp \
+$${CIFRA_SRC}/xos/crypto/hash/md5.hpp \
+$${CIFRA_SRC}/xos/crypto/hash/openssl/md5.hpp \
+$${CIFRA_SRC}/xos/crypto/hash/sha1.hpp \
+$${CIFRA_SRC}/xos/crypto/hash/openssl/sha1.hpp \
+$${CIFRA_SRC}/xos/crypto/hash/sha256.hpp \
+$${CIFRA_SRC}/xos/crypto/hash/openssl/sha256.hpp \
+$${CIFRA_SRC}/xos/crypto/hash/sha512.hpp \
+$${CIFRA_SRC}/xos/crypto/hash/openssl/sha512.hpp \
+\
+$${CIFRA_SRC}/xos/app/console/cifra/main_opt.hpp \
+$${CIFRA_SRC}/xos/app/console/cifra/main.hpp \
+$${NADIR_SRC}/xos/console/main_main.hpp \
 
 # cifra_exe SOURCES
 #
-#cifra_exe_SOURCES += \
-#$${CIFRA_SRC}/cifra/base/Base.cpp \
+cifra_exe_SOURCES += \
+$${CIFRA_SRC}/xos/crypto/base/error.cpp \
+$${CIFRA_SRC}/xos/crypto/base/exception.cpp \
+$${CIFRA_SRC}/xos/crypto/hash/algorithm.cpp \
+$${CIFRA_SRC}/xos/crypto/hash/implement.cpp \
+$${CIFRA_SRC}/xos/crypto/hash/extend.cpp \
+$${CIFRA_SRC}/xos/crypto/hash/openssl/md5.cpp \
+$${CIFRA_SRC}/xos/crypto/hash/openssl/sha1.cpp \
+$${CIFRA_SRC}/xos/crypto/hash/openssl/sha256.cpp \
+$${CIFRA_SRC}/xos/crypto/hash/openssl/sha512.cpp \
+\
+$${CIFRA_SRC}/xos/app/console/cifra/main_opt.cpp \
+$${CIFRA_SRC}/xos/app/console/cifra/main.cpp \
+$${NADIR_SRC}/xos/console/main_main.cpp \
 
 ########################################################################
 # cifra_exe FRAMEWORKS
