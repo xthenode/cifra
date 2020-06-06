@@ -77,6 +77,9 @@ ${cifra_USRLIBDIRS} \
 # Library .cpp sources
 #
 libcifra_LIB_CPP_SOURCES += \
+${CIFRA_SRC}/xos/crypto/base.cpp \
+${CIFRA_SRC}/xos/crypto/hash.cpp \
+${CIFRA_SRC}/xos/crypto/random.cpp \
 ${CIFRA_SRC}/xos/lib/cifra/version.cpp \
 
 #

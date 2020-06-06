@@ -77,6 +77,8 @@ ${cifra_USRLIBDIRS} \
 # Executable .cpp sources
 #
 cifra_exe_EXE_CPP_SOURCES += \
+${CIFRA_SRC}/xos/app/console/cifra/main_opt.cpp \
+${CIFRA_SRC}/xos/app/console/cifra/main.cpp \
 ${NADIR_SRC}/xos/console/main_main.cpp \
 
 #

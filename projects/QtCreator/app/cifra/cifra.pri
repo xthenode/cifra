@@ -57,6 +57,7 @@ $${CIFRA_SRC}/xos/crypto/base/error.hpp \
 $${CIFRA_SRC}/xos/crypto/base/exception.hpp \
 $${CIFRA_SRC}/xos/crypto/base/implement.hpp \
 $${CIFRA_SRC}/xos/crypto/base/extend.hpp \
+$${CIFRA_SRC}/xos/crypto/base.hpp \
 \
 $${CIFRA_SRC}/xos/crypto/hash/algorithm.hpp \
 $${CIFRA_SRC}/xos/crypto/hash/implement.hpp \
@@ -69,6 +70,13 @@ $${CIFRA_SRC}/xos/crypto/hash/sha256.hpp \
 $${CIFRA_SRC}/xos/crypto/hash/openssl/sha256.hpp \
 $${CIFRA_SRC}/xos/crypto/hash/sha512.hpp \
 $${CIFRA_SRC}/xos/crypto/hash/openssl/sha512.hpp \
+$${CIFRA_SRC}/xos/crypto/hash/implemented.hpp \
+$${CIFRA_SRC}/xos/crypto/hash.hpp \
+\
+$${CIFRA_SRC}/xos/crypto/random/generator.hpp \
+$${CIFRA_SRC}/xos/crypto/random/pseudo/generator.hpp \
+$${CIFRA_SRC}/xos/crypto/random/implemented.hpp \
+$${CIFRA_SRC}/xos/crypto/random.hpp \
 \
 $${CIFRA_SRC}/xos/app/console/cifra/main_opt.hpp \
 $${CIFRA_SRC}/xos/app/console/cifra/main.hpp \
@@ -77,15 +85,9 @@ $${NADIR_SRC}/xos/console/main_main.hpp \
 # cifra_exe SOURCES
 #
 cifra_exe_SOURCES += \
-$${CIFRA_SRC}/xos/crypto/base/error.cpp \
-$${CIFRA_SRC}/xos/crypto/base/exception.cpp \
-$${CIFRA_SRC}/xos/crypto/hash/algorithm.cpp \
-$${CIFRA_SRC}/xos/crypto/hash/implement.cpp \
-$${CIFRA_SRC}/xos/crypto/hash/extend.cpp \
-$${CIFRA_SRC}/xos/crypto/hash/openssl/md5.cpp \
-$${CIFRA_SRC}/xos/crypto/hash/openssl/sha1.cpp \
-$${CIFRA_SRC}/xos/crypto/hash/openssl/sha256.cpp \
-$${CIFRA_SRC}/xos/crypto/hash/openssl/sha512.cpp \
+$${CIFRA_SRC}/xos/crypto/base.cpp \
+$${CIFRA_SRC}/xos/crypto/hash.cpp \
+$${CIFRA_SRC}/xos/crypto/random.cpp \
 \
 $${CIFRA_SRC}/xos/app/console/cifra/main_opt.cpp \
 $${CIFRA_SRC}/xos/app/console/cifra/main.cpp \
