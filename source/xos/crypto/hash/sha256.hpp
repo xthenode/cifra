@@ -116,6 +116,13 @@ public:
     }
 
 protected:
+    /// initial / final / transform / update
+    virtual void initial() {}
+    virtual void final() {}
+    virtual void transform() {}
+    virtual void update(const uint8_t* in, size_t inlen) {}
+
+protected:
     uint32_t m_A, m_B, m_C, m_D, m_E, m_F, m_G, m_H, m_l, m_h;
     uint8_t m_hash[HASHSIZE], m_mac[HASHSIZE], m_in[BLOCKSIZE], m_key[BLOCKSIZE];
 }; /// class sha256t

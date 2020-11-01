@@ -24,13 +24,21 @@
 #include "xos/app/console/version/main.hpp"
 #include "xos/lib/cifra/version.hpp"
 
+#if defined(XOS_APP_CONSOLE_CIFRA_MAIN_OPT_EXTENDS_HASH_MAIN)
+#include "xos/app/console/crypto/hash/main.hpp"
+#define XOS_APP_CONSOLE_CIFRA_MAIN_OPT_EXTENDS console::crypto::hash::main
+#else /// defined(XOS_APP_CONSOLE_CIFRA_MAIN_OPT_EXTENDS_HASH_MAIN)
+#define XOS_APP_CONSOLE_CIFRA_MAIN_OPT_EXTENDS version::maint<lib::cifra::version>
+#endif /// defined(XOS_APP_CONSOLE_CIFRA_MAIN_OPT_EXTENDS_HASH_MAIN)
+
 namespace xos {
 namespace app {
 namespace console {
 namespace cifra {
 
 /// class main_optt
-template <class TExtends = version::maint<lib::cifra::version>, class TImplements = typename TExtends::implements>
+template 
+<class TExtends = XOS_APP_CONSOLE_CIFRA_MAIN_OPT_EXTENDS, class TImplements = typename TExtends::implements>
 class exported main_optt: virtual public TImplements, public TExtends {
 public:
     typedef TImplements implements;
@@ -44,12 +52,15 @@ public:
     enum { end_char = extends::end_char };
 
     /// constructor / destructor
-    main_optt(const main_optt& copy): extends(copy) {
-    }
     main_optt() {
     }
     virtual ~main_optt() {
     }
+private:
+    main_optt(const main_optt& copy) {
+        throw exception(exception_unexpected);
+    }
+
 }; /// class main_optt
 typedef main_optt<> main_opt;
 

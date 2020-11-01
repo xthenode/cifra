@@ -13,28 +13,50 @@
 /// or otherwise) arising in any way out of the use of this software, 
 /// even if advised of the possibility of such damage.
 ///
-///   File: main.cpp
+///   File: main_opt.hpp
 ///
 /// Author: $author$
-///   Date: 5/1/2020
+///   Date: 10/9/2020
 ///////////////////////////////////////////////////////////////////////
-#include "xos/app/console/cifra/main.hpp"
+#ifndef XOS_APP_CONSOLE_CRYPTO_SHA_MAIN_OPT_HPP
+#define XOS_APP_CONSOLE_CRYPTO_SHA_MAIN_OPT_HPP
 
-#if !defined(XOS_APP_CONSOLE_CIFRA_MAIN_INSTANCE)
-//#define XOS_APP_CONSOLE_CIFRA_MAIN_INSTANCE
-#endif /// !defined(XOS_APP_CONSOLE_CIFRA_MAIN_INSTANCE)
+#include "xos/app/console/crypto/hash/main.hpp"
 
 namespace xos {
 namespace app {
 namespace console {
-namespace cifra {
+namespace crypto {
+namespace sha {
 
-/// class maint
-#if defined(XOS_APP_CONSOLE_CIFRA_MAIN_INSTANCE)
-static main the_main;
-#endif /// defined(XOS_APP_CONSOLE_CIFRA_MAIN_INSTANCE)
+/// class main_optt
+template <class TExtends = console::crypto::hash::main, class TImplements = typename TExtends::implements>
+class exported main_optt: virtual public TImplements, public TExtends {
+public:
+    typedef TImplements implements;
+    typedef TExtends extends;
+    typedef main_optt derives; 
+    
+    typedef typename extends::file_t file_t;
+    typedef typename extends::string_t string_t;
+    typedef typename extends::char_t char_t;
 
-} /// namespace cifra
+    /// constructors / destructor
+    main_optt() {
+    }
+    virtual ~main_optt() {
+    }
+private:
+    main_optt(const main_optt& copy) {
+        throw exception(exception_unexpected);
+    }
+}; /// class main_optt
+typedef main_optt<> main_opt;
+
+} /// namespace sha
+} /// namespace crypto
 } /// namespace console
 } /// namespace app
 } /// namespace xos
+
+#endif /// XOS_APP_CONSOLE_CRYPTO_SHA_MAIN_OPT_HPP

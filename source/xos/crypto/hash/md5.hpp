@@ -107,6 +107,13 @@ public:
     }
 
 protected:
+    /// initial / final / transform / update
+    virtual void initial() {}
+    virtual void final() {}
+    virtual void transform() {}
+    virtual void update(const uint8_t* in, size_t inlen) {}
+
+protected:
     uint32_t m_A, m_B, m_C, m_D, m_L, m_H;
     uint8_t m_hash[HASHSIZE], m_in[BLOCKSIZE], m_key[BLOCKSIZE], m_mac[HASHSIZE];
 }; /// class md5t

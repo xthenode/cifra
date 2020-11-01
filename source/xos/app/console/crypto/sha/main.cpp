@@ -16,25 +16,28 @@
 ///   File: main.cpp
 ///
 /// Author: $author$
-///   Date: 5/1/2020
+///   Date: 10/9/2020
 ///////////////////////////////////////////////////////////////////////
-#include "xos/app/console/cifra/main.hpp"
+#include "xos/app/console/crypto/sha/main.hpp"
 
-#if !defined(XOS_APP_CONSOLE_CIFRA_MAIN_INSTANCE)
-//#define XOS_APP_CONSOLE_CIFRA_MAIN_INSTANCE
-#endif /// !defined(XOS_APP_CONSOLE_CIFRA_MAIN_INSTANCE)
+#if !defined(XOS_APP_CONSOLE_CRYPTO_SHA_MAIN_INSTANCE)
+//#define XOS_APP_CONSOLE_CRYPTO_SHA_MAIN_INSTANCE
+#endif /// !defined(XOS_APP_CONSOLE_CRYPTO_SHA_MAIN_INSTANCE)
 
 namespace xos {
 namespace app {
 namespace console {
-namespace cifra {
+namespace crypto {
+namespace sha {
 
-/// class maint
-#if defined(XOS_APP_CONSOLE_CIFRA_MAIN_INSTANCE)
+///  Class: maint
+#if defined(XOS_APP_CONSOLE_CRYPTO_SHA_MAIN_INSTANCE)
 static main the_main;
-#endif /// defined(XOS_APP_CONSOLE_CIFRA_MAIN_INSTANCE)
+#endif /// defined(XOS_APP_CONSOLE_CRYPTO_SHA_MAIN_INSTANCE)
 
-} /// namespace cifra
+
+} /// namespace sha
+} /// namespace crypto
 } /// namespace console
 } /// namespace app
 } /// namespace xos
