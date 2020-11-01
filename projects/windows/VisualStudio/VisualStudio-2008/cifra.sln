@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "app", "app", "{1CB3C920-DEFF-40AC-A56A-2367EA3A3732}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "lib", "lib", "{29B8119B-B5E1-4DE7-A2A0-F7237375F5D0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "properties", "properties", "{61D5D341-629D-4913-8E14-7B09FE42B52C}"
+	ProjectSection(SolutionItems) = preProject
+		..\cifra.vsprops = ..\cifra.vsprops
+		..\nadir.vsprops = ..\nadir.vsprops
+		..\vcproj.vsprops = ..\vcproj.vsprops
+		vcversion.vsprops = vcversion.vsprops
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libcifra", "libcifra\libcifra.vcproj", "{54CD7D3F-FB0D-4465-8104-D38E60B0AA39}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cifra", "cifra\cifra.vcproj", "{0EDBA884-C87C-4C68-86F8-A1038EF76ABE}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sha", "sha\sha.vcproj", "{07ED0DEA-8623-4204-977F-7109357E39BA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{54CD7D3F-FB0D-4465-8104-D38E60B0AA39}.Debug|Win32.ActiveCfg = Debug|Win32
+		{54CD7D3F-FB0D-4465-8104-D38E60B0AA39}.Debug|Win32.Build.0 = Debug|Win32
+		{54CD7D3F-FB0D-4465-8104-D38E60B0AA39}.Release|Win32.ActiveCfg = Release|Win32
+		{54CD7D3F-FB0D-4465-8104-D38E60B0AA39}.Release|Win32.Build.0 = Release|Win32
+		{0EDBA884-C87C-4C68-86F8-A1038EF76ABE}.Debug|Win32.ActiveCfg = Debug|Win32
+		{0EDBA884-C87C-4C68-86F8-A1038EF76ABE}.Debug|Win32.Build.0 = Debug|Win32
+		{0EDBA884-C87C-4C68-86F8-A1038EF76ABE}.Release|Win32.ActiveCfg = Release|Win32
+		{0EDBA884-C87C-4C68-86F8-A1038EF76ABE}.Release|Win32.Build.0 = Release|Win32
+		{07ED0DEA-8623-4204-977F-7109357E39BA}.Debug|Win32.ActiveCfg = Debug|Win32
+		{07ED0DEA-8623-4204-977F-7109357E39BA}.Debug|Win32.Build.0 = Debug|Win32
+		{07ED0DEA-8623-4204-977F-7109357E39BA}.Release|Win32.ActiveCfg = Release|Win32
+		{07ED0DEA-8623-4204-977F-7109357E39BA}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0EDBA884-C87C-4C68-86F8-A1038EF76ABE} = {1CB3C920-DEFF-40AC-A56A-2367EA3A3732}
+		{07ED0DEA-8623-4204-977F-7109357E39BA} = {1CB3C920-DEFF-40AC-A56A-2367EA3A3732}
+		{54CD7D3F-FB0D-4465-8104-D38E60B0AA39} = {29B8119B-B5E1-4DE7-A2A0-F7237375F5D0}
+	EndGlobalSection
+EndGlobal
