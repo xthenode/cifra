@@ -21,8 +21,11 @@
 #ifndef XOS_APP_CONSOLE_CRYPTO_HASH_MAIN_OPT_HPP
 #define XOS_APP_CONSOLE_CRYPTO_HASH_MAIN_OPT_HPP
 
+#include "xos/app/console/crypto/base/main.hpp"
+/*
 #include "xos/app/console/version/main.hpp"
 #include "xos/lib/cifra/version.hpp"
+*/
 
 #define XOS_APP_CONSOLE_CRYPTO_HASH_MAIN_HASH_OPT "hash"
 #define XOS_APP_CONSOLE_CRYPTO_HASH_MAIN_HASH_OPTARG_REQUIRED MAIN_OPT_ARGUMENT_NONE
@@ -122,6 +125,7 @@
     XOS_APP_CONSOLE_CRYPTO_HASH_MAIN_5_OPTARG_RESULT, \
     XOS_APP_CONSOLE_CRYPTO_HASH_MAIN_5_OPTVAL_C}, \
 
+/*
 #define XOS_APP_CONSOLE_CRYPTO_HASH_MAIN_PLAIN_OPT "plain"
 #define XOS_APP_CONSOLE_CRYPTO_HASH_MAIN_PLAIN_OPTARG_REQUIRED MAIN_OPT_ARGUMENT_REQUIRED
 #define XOS_APP_CONSOLE_CRYPTO_HASH_MAIN_PLAIN_OPTARG_RESULT 0
@@ -160,37 +164,54 @@
     XOS_APP_CONSOLE_CRYPTO_HASH_MAIN_LOWER_OPTARG_REQUIRED, \
     XOS_APP_CONSOLE_CRYPTO_HASH_MAIN_LOWER_OPTARG_RESULT, \
     XOS_APP_CONSOLE_CRYPTO_HASH_MAIN_LOWER_OPTVAL_C}, \
-
+*/
 
 #define XOS_APP_CONSOLE_CRYPTO_HASH_MAIN_OPTIONS_CHARS_EXTEND \
     XOS_APP_CONSOLE_CRYPTO_HASH_MAIN_D_OPTVAL_S \
     XOS_APP_CONSOLE_CRYPTO_HASH_MAIN_1_OPTVAL_S \
     XOS_APP_CONSOLE_CRYPTO_HASH_MAIN_2_OPTVAL_S \
     XOS_APP_CONSOLE_CRYPTO_HASH_MAIN_5_OPTVAL_S \
-   XOS_APP_CONSOLE_CRYPTO_HASH_MAIN_HASH_OPTVAL_S \
-   XOS_APP_CONSOLE_CRYPTO_HASH_MAIN_MERKEL_OPTVAL_S \
-   XOS_APP_CONSOLE_CRYPTO_HASH_MAIN_PLAIN_OPTVAL_S \
+    XOS_APP_CONSOLE_CRYPTO_HASH_MAIN_HASH_OPTVAL_S \
+    XOS_APP_CONSOLE_CRYPTO_HASH_MAIN_MERKEL_OPTVAL_S \
+    XOS_APP_CONSOLE_CRYPTO_BASE_MAIN_PLAIN_OPTVAL_S \
+    XOS_APP_CONSOLE_CRYPTO_BASE_MAIN_BASE64_OPTVAL_S \
+    XOS_APP_CONSOLE_CRYPTO_BASE_MAIN_UPPER_OPTVAL_S \
+    XOS_APP_CONSOLE_CRYPTO_BASE_MAIN_LOWER_OPTVAL_S \
+/*   
+    XOS_APP_CONSOLE_CRYPTO_HASH_MAIN_PLAIN_OPTVAL_S \
     XOS_APP_CONSOLE_CRYPTO_HASH_MAIN_UPPER_OPTVAL_S \
     XOS_APP_CONSOLE_CRYPTO_HASH_MAIN_LOWER_OPTVAL_S \
+*/
 
 #define XOS_APP_CONSOLE_CRYPTO_HASH_MAIN_OPTIONS_OPTIONS_EXTEND \
     XOS_APP_CONSOLE_CRYPTO_HASH_MAIN_D_OPTION \
     XOS_APP_CONSOLE_CRYPTO_HASH_MAIN_1_OPTION \
     XOS_APP_CONSOLE_CRYPTO_HASH_MAIN_2_OPTION \
     XOS_APP_CONSOLE_CRYPTO_HASH_MAIN_5_OPTION \
-   XOS_APP_CONSOLE_CRYPTO_HASH_MAIN_HASH_OPTION \
-   XOS_APP_CONSOLE_CRYPTO_HASH_MAIN_MERKEL_OPTION \
-   XOS_APP_CONSOLE_CRYPTO_HASH_MAIN_PLAIN_OPTION \
+    XOS_APP_CONSOLE_CRYPTO_HASH_MAIN_HASH_OPTION \
+    XOS_APP_CONSOLE_CRYPTO_HASH_MAIN_MERKEL_OPTION \
+    XOS_APP_CONSOLE_CRYPTO_BASE_MAIN_PLAIN_OPTION \
+    XOS_APP_CONSOLE_CRYPTO_BASE_MAIN_BASE64_OPTION \
+    XOS_APP_CONSOLE_CRYPTO_BASE_MAIN_UPPER_OPTION \
+    XOS_APP_CONSOLE_CRYPTO_BASE_MAIN_LOWER_OPTION \
+/*   XOS_APP_CONSOLE_CRYPTO_HASH_MAIN_PLAIN_OPTION \
     XOS_APP_CONSOLE_CRYPTO_HASH_MAIN_UPPER_OPTION \
     XOS_APP_CONSOLE_CRYPTO_HASH_MAIN_LOWER_OPTION \
+*/
 
 #define XOS_APP_CONSOLE_CRYPTO_HASH_MAIN_OPTIONS_CHARS \
     XOS_APP_CONSOLE_CRYPTO_HASH_MAIN_OPTIONS_CHARS_EXTEND \
+    XOS_APP_CONSOLE_CRYPTO_BASE_MAIN_OPTIONS_CHARS_BASE \
+/*    
     XOS_VERSION_MAIN_USAGE_OPTIONS_CHARS \
+*/
 
 #define XOS_APP_CONSOLE_CRYPTO_HASH_MAIN_OPTIONS_OPTIONS \
     XOS_APP_CONSOLE_CRYPTO_HASH_MAIN_OPTIONS_OPTIONS_EXTEND \
+    XOS_APP_CONSOLE_CRYPTO_BASE_MAIN_OPTIONS_OPTIONS_BASE \
+/*    
     XOS_VERSION_MAIN_USAGE_OPTIONS_OPTIONS \
+*/
 
 #define XOS_APP_CONSOLE_CRYPTO_HASH_MAIN_ARGS "[source]"
 #define XOS_APP_CONSOLE_CRYPTO_HASH_MAIN_ARGV "[source] hash source",
@@ -202,7 +223,7 @@ namespace crypto {
 namespace hash {
 
 /// class main_optt
-template <class TExtends = version::maint<lib::cifra::version>, class TImplements = typename TExtends::implements>
+template <class TExtends = /*version*/crypto::base::main/*t<lib::cifra::version>*/, class TImplements = typename TExtends::implements>
 class exported main_optt: virtual public TImplements, public TExtends {
 public:
     typedef TImplements implements;
@@ -235,6 +256,20 @@ protected:
         } else {
             err = extends::default_run(argc, argv, env);
         }
+        return err;
+    }
+
+    /// ...plain_run
+    virtual int plain_run(int argc, char_t** argv, char_t** env) {
+        int err = 0;
+        err = all_hash_run(argc, argv, env);
+        return err;
+    }
+
+    /// ...cipher_run
+    virtual int cipher_run(int argc, char_t** argv, char_t** env) {
+        int err = 0;
+        err = all_hash_run(argc, argv, env);
         return err;
     }
 
@@ -341,6 +376,7 @@ protected:
         }
         return err;
     }
+/*  
     virtual int on_plain_option
     (int optval, const char_t* optarg,
      const char_t* optname, int optind,
@@ -368,6 +404,7 @@ protected:
         }
         return err;
     }
+*/
 
     /// ...option...
     virtual int on_option
@@ -400,6 +437,7 @@ protected:
             err = on_merkel_option
             (optval, optarg, optname, optind, argc, argv, env);
             break;
+/*
         case XOS_APP_CONSOLE_CRYPTO_HASH_MAIN_PLAIN_OPTVAL_C:
             err = on_plain_option
             (optval, optarg, optname, optind, argc, argv, env);
@@ -416,6 +454,7 @@ protected:
             err = this->on_usage_option
             (optval, optarg, optname, optind, argc, argv, env);
             break;
+*/
         default:
             err = extends::on_option
             (optval, optarg, optname, optind, argc, argv, env);
@@ -450,6 +489,7 @@ protected:
             optarg = XOS_APP_CONSOLE_CRYPTO_HASH_MAIN_MERKEL_OPTARG;
             chars = XOS_APP_CONSOLE_CRYPTO_HASH_MAIN_MERKEL_OPTUSE;
             break;
+/*
         case XOS_APP_CONSOLE_CRYPTO_HASH_MAIN_PLAIN_OPTVAL_C:
             optarg = XOS_APP_CONSOLE_CRYPTO_HASH_MAIN_PLAIN_OPTARG;
             chars = XOS_APP_CONSOLE_CRYPTO_HASH_MAIN_PLAIN_OPTUSE;
@@ -465,6 +505,7 @@ protected:
         case XOS_CONSOLE_MAIN_USAGE_OPTVAL_C:
             chars = this->usage_option_usage(optarg, longopt);
             break;
+*/
         default:
             chars = extends::option_usage(optarg, longopt);
         }

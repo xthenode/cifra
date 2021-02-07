@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////
-/// Copyright (c) 1988-2020 $organization$
+/// Copyright (c) 1988-2021 $organization$
 ///
 /// This software is provided by the author and contributors ``as is'' 
 /// and any express or implied warranties, including, but not limited to, 
@@ -13,39 +13,31 @@
 /// or otherwise) arising in any way out of the use of this software, 
 /// even if advised of the possibility of such damage.
 ///
-///   File: extend.hpp
+///   File: main_opt.cpp
 ///
 /// Author: $author$
-///   Date: 4/30/2020
+///   Date: 1/30/2021
 ///////////////////////////////////////////////////////////////////////
-#ifndef XOS_CRYPTO_BASE_EXTEND_HPP
-#define XOS_CRYPTO_BASE_EXTEND_HPP
+#include "xos/app/console/crypto/base/main_opt.hpp"
 
-#include "xos/crypto/base/implement.hpp"
-#include "xos/logger/defines.hpp"
+#if !defined(XOS_APP_CONSOLE_CRYPTO_BASE_MAIN_OPT_INSTANCE)
+//#define XOS_APP_CONSOLE_CRYPTO_BASE_MAIN_OPT_INSTANCE
+#endif /// !defined(XOS_APP_CONSOLE_CRYPTO_BASE_MAIN_OPT_INSTANCE)
 
 namespace xos {
+namespace app {
+namespace console {
 namespace crypto {
+namespace base {
 
-/// class extendt
-template <class TImplements = crypto::implement, class TExtends = xos::extend>
-class exported extendt: virtual public TImplements, public TExtends {
-public:
-    typedef TImplements implements;
-    typedef TExtends extends;
-    typedef extendt derives;
+///  Class: main_optt
+#if defined(XOS_APP_CONSOLE_CRYPTO_BASE_MAIN_OPT_INSTANCE)
+//static main_opt the_main_opt;
+#endif /// defined(XOS_APP_CONSOLE_CRYPTO_BASE_MAIN_OPT_INSTANCE)
 
-    /// constructor / destructor
-    extendt(const extendt& copy): extends(copy) {
-    }
-    extendt() {
-    }
-    virtual ~extendt() {
-    }
-}; /// class extendt
-typedef extendt<> extend;
 
+} /// namespace base
 } /// namespace crypto
+} /// namespace console
+} /// namespace app
 } /// namespace xos
-
-#endif /// ndef XOS_CRYPTO_BASE_EXTEND_HPP 

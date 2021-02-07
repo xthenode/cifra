@@ -52,7 +52,7 @@ public:
     enum { end_char = extends::end_char };
 
     /// constructors / destructor
-    maint(): hash_finalize_(0), output_hash_(0), hash_algorithm_(0), block_size_(BLOCKSIZE) {
+    maint(): hash_finalize_(0), /*output_hash_(0),*/ hash_algorithm_(0), block_size_(BLOCKSIZE) {
     }
     virtual ~maint() {
     }
@@ -67,19 +67,19 @@ protected:
         int err = 0;
         const char_t* arg = 0;
         if ((argc > optind) && (arg = argv[optind]) && (arg[0])) {
-            err = this->hash_run(argc, argv, env);
+            err = this->all_hash_run(argc, argv, env);
         } else {
             err = extends::default_run(argc, argv, env);
         }
         return err;
     }
 
-    /// ...version_run
+    /*/// ...version_run
     virtual int after_version_run(int argc, char_t** argv, char_t** env) {
         int err = 0;
         err = this->usage(argc, argv, env);
         return err;
-    }
+    }*/
 
     /// ...hash_run
     virtual int hash_run(int argc, char_t** argv, char_t** env) {
@@ -92,8 +92,8 @@ protected:
         } else {
             const char_t* chars = 0; size_t length = 0;
 
-            if ((chars = this->plain(length)) && (0 < length)) {
-                LOGGER_LOG_DEBUG("...\"" << chars << "\" = plain(length = " << length << ")");
+            if ((chars = this->plain_text(length)) && (0 < length)) {
+                LOGGER_LOG_DEBUG("...\"" << chars << "\" = plain_text(length = " << length << ")");
                 err = this->hash_chars(algorithm, chars, length, argc, argv, env);
             } else {
                 err = this->hash_chars(algorithm, 0,0, argc, argv, env);
@@ -480,6 +480,7 @@ protected:
     }
 
     /// ...output_hash
+/*
     int (derives::*output_hash_)(const void* block, size_t length, int argc, char_t** argv, char_t** env);
     virtual int upper_output_hash(const void* block, size_t length, int argc, char_t** argv, char_t** env) {
         int err = 0;
@@ -495,13 +496,17 @@ protected:
         }
         return err;
     }
+*/
     virtual int output_hash(const void* block, size_t length, int argc, char_t** argv, char_t** env) {
         int err = 0;
+/*
         if ((this->output_hash_)) {
             err = (this->*output_hash_)(block, length, argc, argv, env);
         } else {
             err = lower_output_hash(block, length, argc, argv, env);
         }
+*/
+        err = this->output_x(block, length);
         return err;
     }
     virtual int before_output_hash(const void* block, size_t length, int argc, char_t** argv, char_t** env) {
@@ -523,6 +528,7 @@ protected:
         }
         return err;
     }
+/*
     virtual int set_upper_output_hash(int argc, char_t** argv, char_t** env) {
         int err = 0;
         output_hash_ = &derives::upper_output_hash;
@@ -571,6 +577,7 @@ protected:
         }
         return err;
     }
+*/
 
     /// on_..._option
     virtual int on_d_option
@@ -629,6 +636,7 @@ protected:
         }
         return err;
     }
+/*
     virtual int on_plain_option
     (int optval, const char_t* optarg,
      const char_t* optname, int optind,
@@ -660,6 +668,7 @@ protected:
         }
         return err;
     }
+*/
 
     /// ...hash_algorithm
     xos::crypto::hash::algorithm& (derives::*hash_algorithm_)() const;
@@ -714,6 +723,7 @@ protected:
     virtual size_t block_size() const {
         return block_size_;
     }
+/*
     virtual const char_t* set_plain(const char_t* to) {
         plain_.assign(to);
         return plain_.chars();
@@ -721,6 +731,7 @@ protected:
     virtual const char_t* plain(size_t& length) const {
         return plain_.has_chars(length);
     }
+*/
     virtual byte_t* hash(size_t& size) const {
         size = sizeof(hash_);
         return (byte_t*)&hash_;
@@ -732,7 +743,9 @@ protected:
     xos::crypto::hash::sha1 sha1_;
     xos::crypto::hash::sha256 sha256_;
     xos::crypto::hash::sha512 sha512_;
+/*
     string_t plain_;
+*/
     byte_t hash_[HASHSIZE];
     byte_arrayt<BLOCKSIZE> block_;
 }; /// class maint
