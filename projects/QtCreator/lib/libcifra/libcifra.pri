@@ -39,6 +39,7 @@ $${cifra_INCLUDEPATH} \
 #
 libcifra_DEFINES += \
 $${cifra_DEFINES} \
+LOGGING_LEVELS_DEFAULT_ERROR \
 
 ########################################################################
 # libcifra OBJECTIVE_HEADERS

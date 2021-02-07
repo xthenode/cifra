@@ -16,7 +16,7 @@
 #   File: cifra.pri
 #
 # Author: $author$
-#   Date: 4/14/2020
+#   Date: 4/14/2020, 12/22/2020
 #
 # QtCreator .pri file for cifra executable cifra
 ########################################################################
@@ -37,7 +37,7 @@ $${cifra_INCLUDEPATH} \
 #
 cifra_exe_DEFINES += \
 $${cifra_DEFINES} \
-LOGGING_LEVELS_DEFAULT=LOGGING_LEVELS_ERROR \
+LOGGING_LEVELS_DEFAULT_ERROR \
 XOS_APP_CONSOLE_CIFRA_MAIN_INSTANCE \
 
 ########################################################################

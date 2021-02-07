@@ -16,7 +16,7 @@
 #   File: sha.pro
 #
 # Author: $author$
-#   Date: 10/9/2020
+#   Date: 10/9/2020, 12/22/2020
 #
 # QtCreator .pro file for cifra executable sha
 ########################################################################
@@ -54,7 +54,7 @@ $${sha_OBJECTIVE_SOURCES} \
 #
 HEADERS += \
 $${sha_HEADERS} \
-$${OBJECTIVE_HEADERS} \
+$${sha_OBJECTIVE_HEADERS} \
 
 # SOURCES
 #

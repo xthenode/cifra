@@ -16,7 +16,7 @@
 #   File: sha.pri
 #
 # Author: $author$
-#   Date: 10/9/2020
+#   Date: 10/9/2020, 12/22/2020
 #
 # QtCreator .pri file for cifra executable sha
 ########################################################################
@@ -37,7 +37,7 @@ $${cifra_INCLUDEPATH} \
 #
 sha_DEFINES += \
 $${cifra_DEFINES} \
-LOGGING_LEVELS_DEFAULT=LOGGING_LEVELS_ERROR \
+LOGGING_LEVELS_DEFAULT_ERROR \
 XOS_APP_CONSOLE_CRYPTO_SHA_MAIN_INSTANCE \
 
 ########################################################################
@@ -83,6 +83,8 @@ $${CIFRA_SRC}/xos/crypto/hash/openssl/sha512.hpp \
 $${CIFRA_SRC}/xos/crypto/hash/implemented.hpp \
 $${CIFRA_SRC}/xos/crypto/hash.hpp \
 \
+$${CIFRA_SRC}/xos/app/console/crypto/base/main_opt.hpp \
+$${CIFRA_SRC}/xos/app/console/crypto/base/main.hpp \
 $${CIFRA_SRC}/xos/app/console/crypto/hash/main_opt.hpp \
 $${CIFRA_SRC}/xos/app/console/crypto/hash/main.hpp \
 $${CIFRA_SRC}/xos/app/console/crypto/sha/main_opt.hpp \

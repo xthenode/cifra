@@ -16,7 +16,7 @@
 #   File: cifra.pro
 #
 # Author: $author$
-#   Date: 4/14/2020
+#   Date: 4/14/2020, 12/22/2020
 #
 # QtCreator .pro file for cifra executable cifra
 ########################################################################
@@ -54,7 +54,7 @@ $${cifra_exe_OBJECTIVE_SOURCES} \
 #
 HEADERS += \
 $${cifra_exe_HEADERS} \
-$${OBJECTIVE_HEADERS} \
+$${cifra_exe_OBJECTIVE_HEADERS} \
 
 # SOURCES
 #

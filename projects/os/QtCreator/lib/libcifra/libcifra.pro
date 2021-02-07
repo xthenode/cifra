@@ -56,7 +56,7 @@ $${libcifra_OBJECTIVE_SOURCES} \
 #
 HEADERS += \
 $${libcifra_HEADERS} \
-$${OBJECTIVE_HEADERS} \
+$${libcifra_OBJECTIVE_HEADERS} \
 
 # SOURCES
 #

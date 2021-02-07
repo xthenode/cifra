@@ -16,11 +16,10 @@
 #   File: cifra.pri
 #
 # Author: $author$
-#   Date: 4/14/2020
+#   Date: 4/14/2020, 12/22/2020
 #
 # QtCreator .pri file for cifra
 ########################################################################
-
 UNAME = $$system(uname)
 
 contains(UNAME,Darwin) {
@@ -34,9 +33,9 @@ CIFRA_OS = windows
 } # contains(UNAME,Darwin)
 
 contains(BUILD_OS,CIFRA_OS) {
-BUILD_OS = $${CIFRA_OS}
+CIFRA_BUILD = $${CIFRA_OS}
 } else {
-BUILD_OS = os
+CIFRA_BUILD = $${BUILD_OS}
 } # contains(BUILD_OS,CIFRA_OS)
 
 contains(BUILD_CPP_VERSION,10) {
@@ -48,18 +47,25 @@ CONFIG += c++$${BUILD_CPP_VERSION}
 } # contains(BUILD_CPP_VERSION,98|03|11|14|17)
 } # contains(BUILD_CPP_VERSION,10)
 
-contains(XROSTRA_OS,linux) {
+contains(CIFRA_OS,macosx) {
+} else {
+contains(CIFRA_OS,linux) {
 QMAKE_CXXFLAGS += -fpermissive
-}
+} else {
+contains(CIFRA_OS,windows) {
+} else {
+} # contains(CIFRA_OS,windows)
+} # contains(CIFRA_OS,linux)
+} # contains(CIFRA_OS,macosx)
 
 ########################################################################
 # nadir
-NADIR_THIRDPARTY_PKG_MAKE_BLD = $${NADIR_THIRDPARTY_PKG}/build/$${BUILD_OS}/$${BUILD_CONFIG}
-NADIR_THIRDPARTY_PRJ_MAKE_BLD = $${OTHER_BLD}/$${NADIR_THIRDPARTY_PRJ}/build/$${BUILD_OS}/$${BUILD_CONFIG}
-NADIR_THIRDPARTY_PKG_BLD = $${NADIR_THIRDPARTY_PKG}/build/$${BUILD_OS}/QtCreator/$${BUILD_CONFIG}
-NADIR_THIRDPARTY_PRJ_BLD = $${OTHER_BLD}/$${NADIR_THIRDPARTY_PRJ}/build/$${BUILD_OS}/QtCreator/$${BUILD_CONFIG}
-NADIR_PKG_BLD = $${OTHER_BLD}/$${NADIR_PKG}/build/$${BUILD_OS}/QtCreator/$${BUILD_CONFIG}
-NADIR_PRJ_BLD = $${OTHER_BLD}/$${NADIR_PRJ}/build/$${BUILD_OS}/QtCreator/$${BUILD_CONFIG}
+NADIR_THIRDPARTY_PKG_MAKE_BLD = $${NADIR_THIRDPARTY_PKG}/build/$${CIFRA_BUILD}/$${BUILD_CONFIG}
+NADIR_THIRDPARTY_PRJ_MAKE_BLD = $${OTHER_BLD}/$${NADIR_THIRDPARTY_PRJ}/build/$${CIFRA_BUILD}/$${BUILD_CONFIG}
+NADIR_THIRDPARTY_PKG_BLD = $${NADIR_THIRDPARTY_PKG}/build/$${CIFRA_BUILD}/QtCreator/$${BUILD_CONFIG}
+NADIR_THIRDPARTY_PRJ_BLD = $${OTHER_BLD}/$${NADIR_THIRDPARTY_PRJ}/build/$${CIFRA_BUILD}/QtCreator/$${BUILD_CONFIG}
+NADIR_PKG_BLD = $${OTHER_BLD}/$${NADIR_PKG}/build/$${CIFRA_BUILD}/QtCreator/$${BUILD_CONFIG}
+NADIR_PRJ_BLD = $${OTHER_BLD}/$${NADIR_PRJ}/build/$${CIFRA_BUILD}/QtCreator/$${BUILD_CONFIG}
 #NADIR_LIB = $${NADIR_THIRDPARTY_PKG_MAKE_BLD}/lib
 #NADIR_LIB = $${NADIR_THIRDPARTY_PRJ_MAKE_BLD}/lib
 #NADIR_LIB = $${NADIR_THIRDPARTY_PKG_BLD}/lib
