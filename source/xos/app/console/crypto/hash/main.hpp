@@ -22,13 +22,17 @@
 #define XOS_APP_CONSOLE_CRYPTO_HASH_MAIN_HPP
 
 #include "xos/app/console/crypto/hash/main_opt.hpp"
-#include "xos/crypto/hash/md5.hpp"
+#include "xos/crypto/hash/openssl/md5.hpp"
+#include "xos/crypto/hash/openssl/sha1.hpp"
+#include "xos/crypto/hash/openssl/sha256.hpp"
+#include "xos/crypto/hash/openssl/sha512.hpp"
+/*#include "xos/crypto/hash/md5.hpp"
 #include "xos/crypto/hash/sha1.hpp"
 #include "xos/crypto/hash/sha256.hpp"
 #include "xos/crypto/hash/sha512.hpp"
 #include "xos/io/crt/file/reader.hpp"
 #include "xos/console/io.hpp"
-
+*/
 namespace xos {
 namespace app {
 namespace console {
@@ -43,8 +47,9 @@ public:
     typedef TExtends extends;
     typedef maint derives; 
     
-    enum { BLOCKSIZE = 1024*64 };
-    enum { HASHSIZE = xos::crypto::hash::sha512::HASHSIZE };
+    /*enum { BLOCKSIZE = 1024*64 };
+    enum { HASHSIZE = xos::crypto::hash::sha512::HASHSIZE };*/
+
     typedef typename extends::file_t file_t;
     typedef typename extends::string_t string_t;
     typedef typename extends::char_t char_t;
@@ -52,7 +57,9 @@ public:
     enum { end_char = extends::end_char };
 
     /// constructors / destructor
-    maint(): hash_finalize_(0), /*output_hash_(0),*/ hash_algorithm_(0), block_size_(BLOCKSIZE) {
+    maint():/* hash_finalize_(0), *//*output_hash_(0),*/
+        md5_hash_algorithm_(0), sha1_hash_algorithm_(0), sha256_hash_algorithm_(0), sha512_hash_algorithm_(0)
+        /*, block_size_(BLOCKSIZE)*/ {
     }
     virtual ~maint() {
     }
@@ -62,7 +69,7 @@ private:
     }
 
 protected:
-    /// ...default_run
+    /*/// ...default_run
     virtual int default_run(int argc, char_t** argv, char_t** env) {
         int err = 0;
         const char_t* arg = 0;
@@ -72,7 +79,7 @@ protected:
             err = extends::default_run(argc, argv, env);
         }
         return err;
-    }
+    }*/
 
     /*/// ...version_run
     virtual int after_version_run(int argc, char_t** argv, char_t** env) {
@@ -81,7 +88,7 @@ protected:
         return err;
     }*/
 
-    /// ...hash_run
+    /*/// ...hash_run
     virtual int hash_run(int argc, char_t** argv, char_t** env) {
         xos::crypto::hash::algorithm& algorithm = this->hash_algorithm();
         const char_t* arg = 0;
@@ -480,7 +487,7 @@ protected:
     }
 
     /// ...output_hash
-/*
+*//*
     int (derives::*output_hash_)(const void* block, size_t length, int argc, char_t** argv, char_t** env);
     virtual int upper_output_hash(const void* block, size_t length, int argc, char_t** argv, char_t** env) {
         int err = 0;
@@ -497,16 +504,16 @@ protected:
         return err;
     }
 */
-    virtual int output_hash(const void* block, size_t length, int argc, char_t** argv, char_t** env) {
+/*    virtual int output_hash(const void* block, size_t length, int argc, char_t** argv, char_t** env) {
         int err = 0;
-/*
+*//*
         if ((this->output_hash_)) {
             err = (this->*output_hash_)(block, length, argc, argv, env);
         } else {
             err = lower_output_hash(block, length, argc, argv, env);
         }
 */
-        err = this->output_x(block, length);
+/*        err = this->output_x(block, length);
         return err;
     }
     virtual int before_output_hash(const void* block, size_t length, int argc, char_t** argv, char_t** env) {
@@ -528,7 +535,7 @@ protected:
         }
         return err;
     }
-/*
+*//*
     virtual int set_upper_output_hash(int argc, char_t** argv, char_t** env) {
         int err = 0;
         output_hash_ = &derives::upper_output_hash;
@@ -579,7 +586,7 @@ protected:
     }
 */
 
-    /// on_..._option
+    /*/// on_..._option
     virtual int on_d_option
     (int optval, const char_t* optarg,
      const char_t* optname, int optind,
@@ -615,8 +622,8 @@ protected:
         hash_algorithm_ = &derives::sha512_hash_algorithm;
         err = this->all_set_hash_run(argc, argv, env);
         return err;
-    }
-    virtual int on_hash_option
+    }*/
+/*    virtual int on_hash_option
     (int optval, const char_t* optarg,
      const char_t* optname, int optind,
      int argc, char_t**argv, char_t**env) {
@@ -636,7 +643,7 @@ protected:
         }
         return err;
     }
-/*
+*//*
     virtual int on_plain_option
     (int optval, const char_t* optarg,
      const char_t* optname, int optind,
@@ -670,7 +677,7 @@ protected:
     }
 */
 
-    /// ...hash_algorithm
+    /*/// ...hash_algorithm
     xos::crypto::hash::algorithm& (derives::*hash_algorithm_)() const;
     virtual xos::crypto::hash::algorithm& hash_algorithm() const {
         if ((this->hash_algorithm_)) {
@@ -723,7 +730,7 @@ protected:
     virtual size_t block_size() const {
         return block_size_;
     }
-/*
+*//*
     virtual const char_t* set_plain(const char_t* to) {
         plain_.assign(to);
         return plain_.chars();
@@ -732,22 +739,74 @@ protected:
         return plain_.has_chars(length);
     }
 */
-    virtual byte_t* hash(size_t& size) const {
+/*    virtual byte_t* hash(size_t& size) const {
         size = sizeof(hash_);
         return (byte_t*)&hash_;
+    }*/
+
+    /// md5...
+    xos::crypto::hash::md5* (derives::*md5_hash_algorithm_)() const;
+    virtual xos::crypto::hash::algorithm* md5_hash_algorithm() const {
+        if ((md5_hash_algorithm_)) {
+            return (this->*md5_hash_algorithm_)();
+        }
+        return openssl_md5();
+    }
+    virtual xos::crypto::hash::md5* openssl_md5() const {
+        return (xos::crypto::hash::md5*)&openssl_md5_;
+    }
+
+    /// sha1...
+    xos::crypto::hash::sha1* (derives::*sha1_hash_algorithm_)() const;
+    virtual xos::crypto::hash::algorithm* sha1_hash_algorithm() const {
+        if ((sha1_hash_algorithm_)) {
+            return (this->*sha1_hash_algorithm_)();
+        }
+        return openssl_sha1();
+    }
+    virtual xos::crypto::hash::sha1* openssl_sha1() const {
+        return (xos::crypto::hash::sha1*)&openssl_sha1_;
+    }
+
+    /// sha256...
+    xos::crypto::hash::sha256* (derives::*sha256_hash_algorithm_)() const;
+    virtual xos::crypto::hash::algorithm* sha256_hash_algorithm() const {
+        if ((sha256_hash_algorithm_)) {
+            return (this->*sha256_hash_algorithm_)();
+        }
+        return openssl_sha256();
+    }
+    virtual xos::crypto::hash::sha256* openssl_sha256() const {
+        return (xos::crypto::hash::sha256*)&openssl_sha256_;
+    }
+
+    /// sha512...
+    xos::crypto::hash::sha512* (derives::*sha512_hash_algorithm_)() const;
+    virtual xos::crypto::hash::algorithm* sha512_hash_algorithm() const {
+        if ((sha512_hash_algorithm_)) {
+            return (this->*sha512_hash_algorithm_)();
+        }
+        return openssl_sha512();
+    }
+    virtual xos::crypto::hash::sha512* openssl_sha512() const {
+        return (xos::crypto::hash::sha512*)&openssl_sha512_;
     }
 
 protected:
-    size_t block_size_;
+    xos::crypto::hash::openssl::md5 openssl_md5_;
+    xos::crypto::hash::openssl::sha1 openssl_sha1_;
+    xos::crypto::hash::openssl::sha256 openssl_sha256_;
+    xos::crypto::hash::openssl::sha512 openssl_sha512_;
+/*    size_t block_size_;
     xos::crypto::hash::md5 md5_;
     xos::crypto::hash::sha1 sha1_;
     xos::crypto::hash::sha256 sha256_;
     xos::crypto::hash::sha512 sha512_;
-/*
-    string_t plain_;
+*//*    string_t plain_;
 */
-    byte_t hash_[HASHSIZE];
+/*    byte_t hash_[HASHSIZE];
     byte_arrayt<BLOCKSIZE> block_;
+*/
 }; /// class maint
 typedef maint<> main;
 

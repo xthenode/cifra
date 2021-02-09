@@ -22,11 +22,11 @@
 #define XOS_APP_CONSOLE_CRYPTO_SHA_MAIN_HPP
 
 #include "xos/app/console/crypto/sha/main_opt.hpp"
-#include "xos/crypto/hash/openssl/md5.hpp"
+/*#include "xos/crypto/hash/openssl/md5.hpp"
 #include "xos/crypto/hash/openssl/sha1.hpp"
 #include "xos/crypto/hash/openssl/sha256.hpp"
 #include "xos/crypto/hash/openssl/sha512.hpp"
-
+*/
 namespace xos {
 namespace app {
 namespace console {
@@ -46,7 +46,7 @@ public:
     typedef typename extends::char_t char_t;
 
     /// constructors / destructor
-    maint(): md5_(0), sha1_(0), sha256_(0), sha512_(0) {
+    maint()/*: md5_(0), sha1_(0), sha256_(0), sha512_(0)*/ {
     }
     virtual ~maint() {
     }
@@ -56,7 +56,7 @@ private:
     }
 
 protected:
-    /// md5 / sha...
+    /*/// md5 / sha...
     xos::crypto::hash::md5& (derives::*md5_)() const;
     virtual xos::crypto::hash::md5& md5() const {
         if ((md5_)) {
@@ -98,13 +98,14 @@ protected:
     }
     virtual xos::crypto::hash::sha512& openssl_sha512() const {
         return (xos::crypto::hash::sha512&)openssl_sha512_;
-    }
+    }*/
 
 protected:
-    xos::crypto::hash::openssl::md5 openssl_md5_;
+/*    xos::crypto::hash::openssl::md5 openssl_md5_;
     xos::crypto::hash::openssl::sha1 openssl_sha1_;
     xos::crypto::hash::openssl::sha256 openssl_sha256_;
     xos::crypto::hash::openssl::sha512 openssl_sha512_;
+*/
 }; /// class maint
 typedef maint<> main;
 
